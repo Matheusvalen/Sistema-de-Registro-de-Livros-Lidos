@@ -2,6 +2,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-analytics.js";
 import { getFirestore, collection, addDoc, getDocs, getDoc, setDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+import { auth } from "../firebase/firebase.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -22,6 +24,13 @@ const db = getFirestore(app);
 
 const livroForm = document.getElementById('livroForm');
 const tabelaLivros = document.getElementById('tabelaLivros');
+
+// Verifica se o usuário está logado antes de entrar
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    window.location.href = "../index.html";
+  }
+});
 
 // Função para carregar livros do Firestore
 async function carregarLivros() {
