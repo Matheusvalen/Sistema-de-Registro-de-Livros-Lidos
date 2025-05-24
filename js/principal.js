@@ -1,64 +1,104 @@
-// Configuração Firebase (sem imports!)
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-analytics.js";
+import { getFirestore, collection, addDoc, getDocs, getDoc, setDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBVmEk49QfHFfK0WZhzuhmYK6j70le0Tv0",
-  authDomain: "registro-de-livros-lidos.firebaseapp.com",
-  databaseURL: "https://registro-de-livros-lidos-default-rtdb.firebaseio.com",
-  projectId: "registro-de-livros-lidos",
-  storageBucket: "registro-de-livros-lidos.appspot.com",
-  messagingSenderId: "706099221747",
-  appId: "1:706099221747:web:d8851eaa3e5234b537a186"
+    apiKey: "AIzaSyBWmEK49QfFHfOXZwzhumYtK6j70le0Tv0",
+    authDomain: "registro-de-livros-lidos.firebaseapp.com",
+    databaseURL: "https://registro-de-livros-lidos-default-rtdb.firebaseio.com/",  
+    projectId: "registro-de-livros-lidos",
+    storageBucket: "registro-de-livros-lidos.firebasestorage.app",
+    messagingSenderId: "700699221747",
+    appId: "1:700699221747:web:d8851eaa3e52348537a186",
+    measurementId: "G-MZS07SJ92M"
 };
 
-// Inicializa o Firebase
-const app = firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getFirestore(app);
 
 const livroForm = document.getElementById('livroForm');
 const tabelaLivros = document.getElementById('tabelaLivros');
 
-livroForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const titulo = document.getElementById('titulo').value;
-    const autor = document.getElementById('autor').value;
-    const resenha = document.getElementById('resenha').value;
-    const status = document.getElementById('status').value;
-    const avaliacao = document.getElementById('avaliacao').value;
-
-    const novoLivro = {
-        titulo,
-        autor,
-        resenha,
-        status,
-        avaliacao
-    };
-
-    const livroId = app.database().ref().child('livros').push().key;
-    app.database().ref('livro/' + livroId).set(novoLivro);
-
-    livroForm.reset();
-});
-
-app.database().ref('livros').on('value', (snapshot) =>{
-    const livros = snapshot.val();
+// Função para carregar livros do Firestore
+async function carregarLivros() {
+    const querySnapshot = await getDocs(collection(db, "livros"));
     tabelaLivros.innerHTML = '';
-    for (let id in livros){
-        const livro = livros[id];
+
+    querySnapshot.forEach((docSnapshot) => {
+        const livro = docSnapshot.data();
+        const id = docSnapshot.id;
+
         const row = `
-        <tr>
-            <td><em>${livro.titulo}</em></td>
-            <td>${livro.autor}</td>
-            <td>${'★'.repeat(livro.avaliacao)}${'☆'.repeat(5 - livro.avaliacao)}</td>
-            <td>${livro.status}</td>
-            <td>${livro.resenha}</td>a
-            <td>
-                <a href="#" onclick="editarLivro('${id}')">Editar</a> |
-                <a href="#" onclick="excluirLivro('${id}')">Excluir</>
-            </td>
-        </tr>`;
+            <tr>
+                <td><em>${livro.titulo}</em></td>
+                <td>${livro.autor}</td>
+                <td>${'★'.repeat(livro.avaliacao)}${'☆'.repeat(5 - livro.avaliacao)}</td>
+                <td>${livro.status}</td>
+                <td>${livro.resenha}</td>
+                <td>
+                    <a href="#" onclick="editarLivro('${id}')">Editar</a> |
+                    <a href="#" onclick="excluirLivro('${id}')">Excluir</a>
+                </td>
+            </tr>
+        `;
         tabelaLivros.innerHTML += row;
-    }
+    });
+}
+
+let livroEditandoId = null;
+
+livroForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const titulo = document.getElementById('titulo').value;
+  const autor = document.getElementById('autor').value;
+  const resenha = document.getElementById('resenha').value;
+  const status = document.getElementById('status').value;
+  const avaliacao = parseInt(document.getElementById('avaliacao').value);
+
+  const livro = { titulo, autor, resenha, status, avaliacao };
+
+  if (livroEditandoId) {
+    const livroRef = doc(db, "livros", livroEditandoId);
+    await setDoc(livroRef, livro);
+    livroEditandoId = null; // Limpa modo de edição
+  } else {
+    await addDoc(collection(db, "livros"), livro);
+  }
+
+  livroForm.reset();
+  carregarLivros();
 });
 
-function excluirLivro(id){
-    firebaseConfig.database().ref('livros/' + id).remove();
-}
+// Função para excluir livro
+window.excluirLivro = async function(id) {
+    await deleteDoc(doc(db, "livros", id));
+    carregarLivros(); // Recarrega a lista após excluir
+};
+
+window.editarLivro = async function(id) {
+  const livroDoc = doc(db, "livros", id);
+  const livroSnapshot = await getDoc(livroDoc);
+
+  if (!livroSnapshot.exists()) {
+    alert("Livro não encontrado!");
+    return;
+  }
+
+  const livro = livroSnapshot.data();
+
+  document.getElementById('titulo').value = livro.titulo;
+  document.getElementById('autor').value = livro.autor;
+  document.getElementById('resenha').value = livro.resenha;
+  document.getElementById('status').value = livro.status;
+  document.getElementById('avaliacao').value = livro.avaliacao;
+
+  livroEditandoId = id; // Define que estamos editando
+};
+
+// Chama a função inicialmente para carregar livros
+carregarLivros();
