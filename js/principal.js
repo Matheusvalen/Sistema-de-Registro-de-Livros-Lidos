@@ -84,6 +84,41 @@ livroForm.addEventListener('submit', async (event) => {
   carregarLivros();
 });
 
+document.getElementById('btnFiltrar').addEventListener('click', async () => {
+  const filtroTitulo = document.getElementById('filtroTitulo').value.toLowerCase().trim();
+
+  const querySnapshot = await getDocs(collection(db, "livros"));
+  tabelaLivros.innerHTML = '';
+
+  querySnapshot.forEach((docSnapshot) => {
+    const livro = docSnapshot.data();
+    const id = docSnapshot.id;
+
+    // Verifica se o título inclui o texto digitado (ignorando maiúsculas/minúsculas)
+    if (livro.titulo.toLowerCase().includes(filtroTitulo)) {
+      const row = `
+        <tr>
+            <td><em>${livro.titulo}</em></td>
+            <td>${livro.autor}</td>
+            <td>${'★'.repeat(livro.avaliacao)}${'☆'.repeat(5 - livro.avaliacao)}</td>
+            <td>${livro.status}</td>
+            <td>${livro.resenha}</td>
+            <td>
+                <a href="#" onclick="editarLivro('${id}')">Editar</a> |
+                <a href="#" onclick="excluirLivro('${id}')">Excluir</a>
+            </td>
+        </tr>
+      `;
+      tabelaLivros.innerHTML += row;
+    }
+  });
+});
+
+document.getElementById('btnLimpar').addEventListener('click', () => {
+  document.getElementById('filtroTitulo').value = '';
+  carregarLivros(); // Recarrega todos os livros
+})
+
 // Função para excluir livro
 window.excluirLivro = async function(id) {
     await deleteDoc(doc(db, "livros", id));
