@@ -147,3 +147,12 @@ window.editarLivro = async function(id) {
 
 // Chama a função inicialmente para carregar livros
 carregarLivros();
+window.sair = function() {
+    if(confirm('Tem certeza que deseja sair do sistema?')) {
+        auth.signOut().then(() => {
+            window.location.href = '../index.html';
+        }).catch((error) => {
+            console.error('Erro ao sair:', error);
+        });
+    }
+};

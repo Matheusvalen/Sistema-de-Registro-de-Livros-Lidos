@@ -1,3 +1,15 @@
 body{
     background-color: #f8f9fa;
 }
+.btn-sair {
+    background-color: #dc3545;
+    color: white;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.btn-sair:hover {
+    background-color: #c82333;
+    color: white;
+}
