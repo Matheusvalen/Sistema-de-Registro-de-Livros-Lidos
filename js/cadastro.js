@@ -27,6 +27,25 @@ document.getElementById("cadastroForm").addEventListener("submit", async (e) => 
   const email = document.getElementById("email").value;
   const senha = document.getElementById("senha").value;
 
+  if (emailInput && senhaInput) {
+    document.getElementById("cadastroForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = emailInput.value;
+        const senha = senhaInput.value;
+
+        try {
+            await createUserWithEmailAndPassword(auth, email, senha);
+            alert("Usuário cadastrado com sucesso!");
+            window.location.href = "../index.html";
+        } catch (error) {
+            alert("Erro no cadastro: " + error.message);
+        }
+    });
+} 
+else {
+    console.error("Campos de cadastro não encontrados.");
+}
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
     const user = userCredential.user;
