@@ -145,6 +145,7 @@ window.editarLivro = async function(id) {
   livroEditandoId = id; // Define que estamos editando
 };
 
+
 // Chama a função inicialmente para carregar livros
 carregarLivros();
 window.sair = function() {
