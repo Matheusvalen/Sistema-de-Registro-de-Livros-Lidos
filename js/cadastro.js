@@ -1,4 +1,4 @@
-// Importação do Firebase
+// Importações do Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
@@ -31,18 +31,18 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  // Evento de envio do formulário de cadastro
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-
     const email = emailInput.value;
     const senha = senhaInput.value;
 
     try {
-      // Cria usuário no Firebase Authentication
+      // Cria usuário com Firebase Authentication
       const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
       const user = userCredential.user;
 
-      // Salva dados no Firestore
+      // Salva os dados do usuário no Firestore
       await setDoc(doc(db, "usuarios", user.uid), {
         email: user.email,
         criadoEm: new Date()

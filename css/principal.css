@@ -1,80 +1,89 @@
+/*Estilo da página principal*/
 body{
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #667eea, #764ba2); /* Fundo com gradiente igual à tela de login */
 }
+
 .btn-sair {
-    background-color: #dc3545;
-    color: white;
-    position: absolute;
-    right: 20px;
-    top: 20px;
+    background-color: #dc3545;                       /* Cor vermelha (perigo/saída) */
+    color: white;                                    /* Texto branco */
+    position: absolute;                              /* Posicionamento fixo */
+    right: 20px;                                     /* Distância da direita */
+    top: 20px;                                       /* Distância do topo */
 }
 
 .btn-sair:hover {
-    background-color: #c82333;
-    color: white;
-}
-.btn-primary{
-    background-color: white;
-    color: #667eea;
-}
-.text-center {
-    color: white;
-}
-.card {
-    border: 1px solid rgba(0,0,0,.125);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    background-color: #c82333;                       /* Tom mais escuro ao passar o mouse */
+    color: white;                                    /* Mantém o texto branco */
 }
 
+.btn-primary{
+    background-color: white;                         /* Fundo branco */
+    color: #667eea;                                  /* Texto roxo */
+}
+
+.text-center {
+    color: white;                                    /* Texto branco para títulos ou cabeçalhos */
+}
+
+.card {
+    border: 1px solid rgba(0,0,0,.125);              /* Borda leve */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);   /* Sombra sutil */
+}
+
+
 .table {
-    margin-bottom: 0;
+    margin-bottom: 0;                                /* Remove espaço inferior padrão da tabela */
 }
 
 .table thead th {
-    background-color: #f8f9fa;
+    background-color: #f8f9fa;                       /* Cabeçalho da tabela com cor cinza-clara */
 }
+
 #tabelaLivros td:nth-child(3) {
-    color: #ffc107; /* Cor amarela para as estrelas */
-    font-size: 1.2em;
+    color: #ffc107;                                  /* Cor amarela para a coluna de estrelas */
+    font-size: 1.2em;                                /* Fonte maior */
 }
+
 #tabelaLivros {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte moderna e legível */
 }
+
 
 /* Estilo para as linhas da tabela */
 #tabelaLivros tr {
-    transition: all 0.3s ease;
-    border-bottom: 1px solid #e0e0e0;
+    transition: all 0.3s ease;                       /* Suaviza qualquer mudança de estilo */
+    border-bottom: 1px solid #e0e0e0;                /* Linha divisória entre registros */
 }
 /* Estilo para as células */
 #tabelaLivros td {
-    padding: 12px 15px;
-    vertical-align: middle;
+    padding: 12px 15px;                              /* Espaço interno das células */
+    vertical-align: middle;                          /* Alinha o conteúdo ao meio verticalmente */
 }
 #tabelaLivros a {
-    color: #0d6efd;
-    text-decoration: none;
-    margin: 0 5px;
-    padding: 5px 8px;
-    border-radius: 4px;
-    transition: all 0.2s;
+    color: #0d6efd;                                  /* Cor azul típica de links */
+    text-decoration: none;                           /* Remove sublinhado */
+    margin: 0 5px;                                   /* Espaço horizontal entre ícones */
+    padding: 5px 8px;                                /* Tamanho do botão/link */
+    border-radius: 4px;                              /* Borda arredondada */
+    transition: all 0.2s;                            /* Animação ao interagir */
 }
 
 #tabelaLivros a:hover {
-    background-color: #0d6efd;
-    color: white;
-    text-decoration: none;
+    background-color: #0d6efd;                       /* Fundo azul ao passar o mouse */
+    color: white;                                    /* Texto branco */
+    text-decoration: none;                           /* Sem sublinhado */
 }
 
 /* Estilo para células de status */
 #tabelaLivros td:nth-child(4) {
-    font-weight: 500;
-    text-transform: capitalize;
+    font-weight: 500;                                /* Peso médio da fonte */
+    text-transform: capitalize;                      /* Primeira letra maiúscula */
 }
 #avaliacao.form-select{
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ced4da;
-    background-color: white;
-    color: #ffc107;
+    width: 100%;                                     /* Largura total */
+    padding: 10px;                                   /* Espaço interno */
+    border-radius: 5px;                              /* Bordas arredondadas */
+    border: 1px solid #ced4da;                       /* Borda cinza */
+    background-color: white;                         /* Fundo branco */
+    color: #ffc107;                                  /* Texto amarelo */
 }
