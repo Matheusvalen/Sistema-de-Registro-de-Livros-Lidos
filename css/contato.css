@@ -1,0 +1,21 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: whitesmoke;
+}
+
+
+.navbar {
+  background: #8D6E63 ; /* força a cor, mesmo com Bootstrap */
+}
+
+.navbar ,
+.navbar .navbar-brand {
+  color: white !important;
+}

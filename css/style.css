@@ -8,7 +8,7 @@
 /* Corpo da página */
 body {
     font-family: Arial, sans-serif;  /* Define a fonte padrão do corpo como Arial */
-    background: linear-gradient(135deg, #667eea, #764ba2); /* Cria um fundo com gradiente diagonal */
+    background: linear-gradient(to right, #4E342E, #8D6E63); /* Cria um fundo com gradiente diagonal */
     height: 100vh;                   /* Define a altura da página igual à altura da janela de visualização */
     display: flex;                   /* Usa flexbox para alinhamento */
     justify-content: center;        /* Centraliza horizontalmente */
@@ -35,7 +35,7 @@ input {
 }
 
 button {
-    background-color: #667eea;                       /* Cor de fundo roxa */
+    background-color: #8D6E63;                       /* Cor de fundo roxa */
     color: white;                                    /* Texto branco */
     border: none;                                    /* Sem borda */
     padding: 12px;                                   /* Espaço interno */
@@ -46,7 +46,7 @@ button {
 }
 
 button:hover {
-    background-color: #5a67d8;                       /* Muda a cor do botão ao passar o mouse */
+    background-color: #4E342E;                       /* Muda a cor do botão ao passar o mouse */
 }
 
 /* Link de navegação */
@@ -54,7 +54,7 @@ a {
     margin-top: 10px;                                /* Espaço superior */
     text-align: center;                              /* Centraliza o texto */
     display: block;                                  /* Faz o link ocupar toda a linha */
-    color: #5a67d8;                                   /* Cor do texto */
+    color: #8D6E63;                                   /* Cor do texto */
     font-weight: bold;                               /* Negrito */
     text-decoration: none;                           /* Remove o sublinhado padrão */
 }

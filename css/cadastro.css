@@ -9,7 +9,7 @@
 /* Corpo da página */
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(to right, #4E342E, #8D6E63);
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -37,7 +37,7 @@ input {
 }
 
 button {
-    background-color: #667eea;
+    background-color: #8D6E63;
     color: white;
     border: none;
     padding: 12px;
@@ -48,7 +48,7 @@ button {
 }
 
 button:hover {
-    background-color: #5a67d8;
+    background-color: #4E342E;
 }
 
 /* Link de navegação */
@@ -56,7 +56,7 @@ a {
     margin-top: 10px;
     text-align: center;
     display: block;
-    color: 5a67d8;
+    color: #8D6E63;
     font-weight: bold;
     text-decoration: none;
 }

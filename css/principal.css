@@ -1,7 +1,8 @@
 /*Estilo da página principal*/
 body{
-    background: linear-gradient(135deg, #667eea, #764ba2); /* Fundo com gradiente igual à tela de login */
+    background: linear-gradient(to right, #4E342E, #8D6E63); /* Fundo com gradiente igual à tela de login */
 }
+
 
 .btn-sair {
     background-color: #dc3545;                       /* Cor vermelha (perigo/saída) */
@@ -18,7 +19,13 @@ body{
 
 .btn-primary{
     background-color: white;                         /* Fundo branco */
-    color: #667eea;                                  /* Texto roxo */
+    color: #8D6E63; 
+    border-color: #8D6E63;                                 /* Texto roxo */
+}
+
+.btn-primary:hover{
+    background-color: #4E342E;
+    border-color: #8D6E63;                        /* Fundo roxo ao passar*/
 }
 
 .text-center {
@@ -60,7 +67,7 @@ body{
     vertical-align: middle;                          /* Alinha o conteúdo ao meio verticalmente */
 }
 #tabelaLivros a {
-    color: #0d6efd;                                  /* Cor azul típica de links */
+    color: #4E342E;                                  /* Cor azul típica de links */
     text-decoration: none;                           /* Remove sublinhado */
     margin: 0 5px;                                   /* Espaço horizontal entre ícones */
     padding: 5px 8px;                                /* Tamanho do botão/link */
@@ -69,7 +76,7 @@ body{
 }
 
 #tabelaLivros a:hover {
-    background-color: #0d6efd;                       /* Fundo azul ao passar o mouse */
+    background-color: #4E342E ;                       /* Fundo azul ao passar o mouse */
     color: white;                                    /* Texto branco */
     text-decoration: none;                           /* Sem sublinhado */
 }
