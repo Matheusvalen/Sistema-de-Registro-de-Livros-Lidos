@@ -1,0 +1,3 @@
+- se após extrair a pasta "Sistema-de-Registro-de-Livros-Lidos" e dentro dela tiver uma pasta também chamada de "Sistema-de-Registro-de-Livros-Lidos"
+- você deve copiar ou recortar a pasta "Sistema-de-Registro-de-Livros-Lidos" (que está dentro da pasta extraída) e cola-la fora da pasta extraída.
+- isso é necessário para que o sistema não tenha nenhum erro de diretório incorreto por conta de estar dentro de outra pasta.
